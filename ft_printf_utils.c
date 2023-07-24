@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_utils.c                                     :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahmadzaaza <ahmadzaaza@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 23:16:06 by ahmadzaaza        #+#    #+#             */
-/*   Updated: 2023/07/23 23:30:25 by ahmadzaaza       ###   ########.fr       */
+/*   Updated: 2023/07/24 09:31:46 by ahmadzaaza       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/ft_printf.h"
 #include <stdarg.h>
 
-void ft_parse(char c, va_list args) {
+void ft_parse(char c, va_list *args) {
   if (c == 'c')
-    ft_putchar(va_arg(args, int));
+    ft_putchar(va_arg(*args, int));
   else if (c == 's')
-    ft_putstr(va_arg(args, char *));
+    ft_putstr(va_arg(*args, char *));
   else if (c == 'p')
-    ft_puthex(va_arg(args, unsigned long int));
+    ft_puthex(va_arg(*args, unsigned long int));
   else if (c == 'd')
-    ft_putnbr(va_arg(args, int));
+    ft_putnbr(va_arg(*args, int));
   else if (c == 'i')
-    ft_putnbr(va_arg(args, int));
+    ft_putnbr(va_arg(*args, int));
   else if (c == 'x')
-    ft_puthex(va_arg(args, unsigned int));
+    ft_puthex(va_arg(*args, unsigned int));
   else if (c == 'X')
-    ft_puthex(va_arg(args, unsigned int));
+    ft_puthex(va_arg(*args, unsigned int));
   else if (c == 'u')
-    ft_putnbr(va_arg(args, unsigned int));
+    ft_putnbr(va_arg(*args, unsigned int));
   else if (c == '%')
     ft_putchar('%');
 }

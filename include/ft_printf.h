@@ -6,7 +6,7 @@
 /*   By: ahmadzaaza <ahmadzaaza@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:28:39 by ahmadzaaza        #+#    #+#             */
-/*   Updated: 2023/07/23 23:27:59 by ahmadzaaza       ###   ########.fr       */
+/*   Updated: 2023/07/24 09:28:25 by ahmadzaaza       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 int ft_printf(const char *, ...);
 
-void ft_parse(char c, va_list args);
+void ft_parse(char c, va_list *args);
 
 void ft_putchar(char c);
 void ft_putstr(char *s);
