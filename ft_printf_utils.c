@@ -25,9 +25,9 @@ void ft_parse(char c, va_list *args, int *count) {
   else if (c == 'i')
     *count += ft_putnbr(va_arg(*args, int));
   else if (c == 'x')
-    *count += ft_puthex(va_arg(*args, unsigned int));
+    ft_puthex(va_arg(*args, unsigned int), count);
   else if (c == 'X')
-    *count += ft_puthex(va_arg(*args, unsigned int));
+    ft_puthex(va_arg(*args, unsigned int), count);
   else if (c == 'u')
     *count += ft_putnbr(va_arg(*args, unsigned int));
   else if (c == '%')
@@ -70,23 +70,36 @@ int ft_putnbr(int n) {
   count++;
   return count;
 }
-
-int ft_puthex(unsigned long n) {
+#include "stdio.h"
+void ft_puthex(unsigned long n, int *count) {
   char *hex;
-  int count;
 
-  count = 0;
   hex = "0123456789abcdef";
-  while (n > 15) {
-    count += ft_putchar(hex[n % 16]);
-    n = n / 16;
+  if (n > 15) {
+    ft_puthex(n / 16, count);
   }
-  count += ft_putchar(hex[n % 16]);
-  return count;
+  *count += ft_putchar(hex[n % 16]);
 }
+// int ft_puthex(unsigned long n) {
+//   char *hex;
+//   int count;
+
+//   count = 0;
+//   hex = "0123456789abcdef";
+//   while (n > 15) {
+//     count += ft_putchar(hex[n % 16]);
+//     n = n / 16;
+//   }
+//   count += ft_putchar(hex[n]);
+//   return count;
+// }
 
 int ft_putmem(unsigned long n) {
+  int count;
+
   ft_putchar(48);
   ft_putchar('x');
-  return ft_puthex(n) + 2;
+  count = 2;
+  ft_puthex(n, &count);
+  return count;
 }

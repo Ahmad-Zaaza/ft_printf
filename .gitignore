@@ -1,5 +1,6 @@
 printfTester
 a.out
 a.exe
+*.o
 a.out.dSYM
 ft_printf_tester
