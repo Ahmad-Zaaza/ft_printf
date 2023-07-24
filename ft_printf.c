@@ -39,9 +39,9 @@ int ft_printf(const char *str, ...) {
 
 // int main(void) {
 
-//   char *str = "hello world";
-//   ft_printf("%p\n", &str);
-//   printf("%p\n", &str);
+//   // char *str = "hello world";
+//   ft_printf("%d\n", 0);
+//   printf("%d\n", 0);
 
 //   // printf(" %c %c %c \n", 'c', 0, 'a');
 //   // ft_printf("Ours is %c\n %s\n %c\n", 42, "65", 97);

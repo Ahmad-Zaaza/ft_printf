@@ -23,7 +23,8 @@ void ft_parse(char c, va_list *args, int *count);
 
 int ft_putchar(char c);
 int ft_putstr(char *s);
-int ft_putnbr(int n);
+void ft_putnbr(int n, int *count);
+void ft_putunbr(unsigned int n, int *count);
 void ft_puthex(unsigned long n, int *count);
 int ft_putmem(unsigned long n);
 
