@@ -6,7 +6,7 @@
 /*   By: ahmadzaaza <ahmadzaaza@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 22:30:02 by ahmadzaaza        #+#    #+#             */
-/*   Updated: 2023/07/24 09:48:02 by ahmadzaaza       ###   ########.fr       */
+/*   Updated: 2023/07/24 09:54:47 by ahmadzaaza       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,12 @@ int ft_printf(const char *str, ...) {
   while (str[i]) {
     if (str[i] == '%') {
       i++;
-      ft_parse(str[i], &args);
+      ft_parse(str[i], &args, &count);
       i++;
     } else {
-      ft_putchar(str[i]);
+      count += ft_putchar(str[i]);
       i++;
     }
-    count++;
   }
   va_end(args);
   return count;
