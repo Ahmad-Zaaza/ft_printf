@@ -25,7 +25,7 @@ int ft_putchar(char c);
 int ft_putstr(char *s);
 void ft_putnbr(int n, int *count);
 void ft_putunbr(unsigned int n, int *count);
-void ft_puthex(unsigned long n, int *count);
+void ft_puthex(unsigned long n, int *count, char c);
 int ft_putmem(unsigned long n);
 
 #endif

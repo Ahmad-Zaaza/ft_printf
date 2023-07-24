@@ -11,28 +11,6 @@
 /* ************************************************************************** */
 
 #include "include/ft_printf.h"
-#include <stdarg.h>
-
-void ft_parse(char c, va_list *args, int *count) {
-  if (c == 'c')
-    *count += ft_putchar(va_arg(*args, int));
-  else if (c == 's')
-    *count += ft_putstr(va_arg(*args, char *));
-  else if (c == 'p')
-    *count += ft_putmem(va_arg(*args, unsigned long int));
-  else if (c == 'd')
-    ft_putnbr(va_arg(*args, int), count);
-  else if (c == 'i')
-    ft_putnbr(va_arg(*args, int), count);
-  else if (c == 'x')
-    ft_puthex(va_arg(*args, unsigned int), count);
-  else if (c == 'X')
-    ft_puthex(va_arg(*args, unsigned int), count);
-  else if (c == 'u')
-    ft_putunbr(va_arg(*args, unsigned int), count);
-  else if (c == '%')
-    *count += ft_putchar('%');
-}
 
 int ft_putchar(char c) {
   write(1, &c, 1);
@@ -42,6 +20,10 @@ int ft_putchar(char c) {
 int ft_putstr(char *str) {
   int i;
 
+  if (!str) {
+    ft_putstr("(null)");
+    return 6;
+  }
   i = 0;
   while (str[i])
     ft_putchar(str[i++]);
@@ -49,36 +31,29 @@ int ft_putstr(char *str) {
   return i;
 }
 
-void ft_puthex(unsigned long n, int *count) {
+void ft_puthex(unsigned long n, int *count, char c) {
   char *hex;
-
-  hex = "0123456789abcdef";
+  if (c == 'x')
+    hex = "0123456789abcdef";
+  else
+    hex = "0123456789ABCDEF";
   if (n > 15) {
-    ft_puthex(n / 16, count);
+    ft_puthex(n / 16, count, c);
   }
   *count += ft_putchar(hex[n % 16]);
 }
-// int ft_puthex(unsigned long n) {
-//   char *hex;
-//   int count;
-
-//   count = 0;
-//   hex = "0123456789abcdef";
-//   while (n > 15) {
-//     count += ft_putchar(hex[n % 16]);
-//     n = n / 16;
-//   }
-//   count += ft_putchar(hex[n]);
-//   return count;
-// }
 
 int ft_putmem(unsigned long n) {
   int count;
 
+  if (!n) {
+    ft_putstr("(nil)");
+    return 5;
+  }
   ft_putchar(48);
   ft_putchar('x');
   count = 2;
-  ft_puthex(n, &count);
+  ft_puthex(n, &count, 'x');
   return count;
 }
 
@@ -95,6 +70,7 @@ void ft_putnbr(int n, int *count) {
   }
   *count += ft_putchar(nb % 10 + 48);
 }
+
 void ft_putunbr(unsigned int n, int *count) {
   long int nb;
 
