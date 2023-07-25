@@ -3,28 +3,21 @@ NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 AR = ar
+UTILS_PATH=./utils
 
+SRCS = ft_printf.c ft_printf_utils.c $(UTILS_PATH)/ft_puthex.c $(UTILS_PATH)/ft_putstr.c
 
-SRCS = ft_printf.c ft_printf_utils.c
-SRCS_B = ft_printf_bonus.c ft_printf_utils_bonus.c utils/ft_atoi.c
 OBJECTS = $(SRCS:%.c=%.o)
-OBJECTS_B = $(SRCS_B:%.c=%.o)
-
 
 all: $(NAME)
-
-.o.c: $(SRCS) $(SRCS_B)
-	$(CC) $(CFLAGS) -L . -lftprintf -c $(SRCS) $(SRCS_B)
-
+.o.c: $(SRCS) 
+	$(CC) $(CFLAGS) -L . -lftprintf -c $(SRCS) 
 $(NAME) : $(OBJECTS)
 	$(AR) -rcs $@ $^
 
-bonus: $(OBJECTS_B)
-	$(AR) -rcs $(NAME) $^
-
 PHONY: clean fclean all re bonus
 clean:
-	rm -f $(OBJECTS) $(OBJECTS_B)
+	rm -f $(OBJECTS) 
 fclean: clean
 	rm -f $(NAME)
 re: fclean all
